@@ -93,7 +93,7 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 if(PDF_EXPORT){
   cat("Online version at https://jtgregoire93.github.io/resume/")
 } else {
-  cat("[<i class='fas fa-download'></i> Download PDF version](https://github.com/jtgregoire93/resume/blob/main/jgregoire_resume.pdf)")
+  cat("[<i class='fas fa-download'></i> Download PDF version](https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf)")
 }
 ```
 
