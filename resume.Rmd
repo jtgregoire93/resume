@@ -6,6 +6,7 @@ output:
     css: ['css/custom_resume.css', 'css/styles.css', 'resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
+
 ---
 
 ```{r, include=FALSE}
@@ -84,6 +85,15 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 -   Jira, Github, Confluence;
 
 ## Disclaimer {#disclaimer}
+
+```{r}
+# When in export mode the little dots are unaligned, so fix that. 
+if(PDF_EXPORT){
+  cat("View this CV online at https://jtgregoire93.github.io/resume/")
+} else {
+  cat("[<i class='fas fa-download'></i> Download a PDF of this CV](https://github.com/nstrayer/cv/raw/master/strayer_cv.pdf)")
+}
+```
 
 Last updated on `r Sys.Date()`.
 
