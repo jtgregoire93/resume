@@ -19,7 +19,7 @@ library(glue)
 library(googlesheets4)
 
 # Set this to true to have links turned into footnotes at the end of the document
-PDF_EXPORT <- FALSE
+PDF_EXPORT <- TRUE
 
 # Holds all the links that were inserted for placement at the end
 links <- c()
@@ -91,7 +91,7 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 ```{r}
 # When in export mode the little dots are unaligned, so fix that. 
 if(PDF_EXPORT){
-  cat("Online version at https://jtgregoire93.github.io/resume/")
+  cat("Online version [here](https://jtgregoire93.github.io/resume/)")
 } else {
   cat("[<i class='fas fa-download'></i> Download PDF version](https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf)")
 }
