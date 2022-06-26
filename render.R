@@ -9,14 +9,8 @@
 # If you need to update your data delete the "ddcv_cache.rds" file and re-run
 
 library(tidyverse)
-source("CV_printing_functions.R")
-cv_data <- create_CV_object(
-  data_location = "https://docs.google.com/spreadsheets/d/1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM",
-  cache_data = FALSE
-)
-
 readr::write_rds(cv_data, 'cached_positions.rds')
-cache_data <- TRUE
+cache_data <- FALSE
 
 # Knit the HTML version
 rmarkdown::render("resume.rmd",
