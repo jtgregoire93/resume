@@ -19,7 +19,7 @@ library(glue)
 library(googlesheets4)
 
 # Set this to true to have links turned into footnotes at the end of the document
-PDF_EXPORT <- FALSE
+PDF_EXPORT <- TRUE
 
 # Holds all the links that were inserted for placement at the end
 links <- c()
@@ -59,15 +59,15 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 
 ### **Technical Skills**
 
--   Inferential Statistics and Modeling;
+-   Inferential Statistics and Modeling
 
--   Data Modeling and Warehouse design;
+-   Data Modeling and Warehouse design
 
 -   Advanced Data Visualizations
 
 ### **Strategic Skills**
 
--   Domain knowledge of product and marketing across B2C (ed tech, mobile gaming) and B2B (Cloud Services);
+-   Domain knowledge of product and marketing across B2C (ed tech, mobile gaming) and B2B (Cloud Services)
 
 -   Data team strategy and processes
 
@@ -79,9 +79,9 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 
 -   Dashboards in Tableau, Looker, Domo, Mixpanel
 
--   Advanced visualizations in Shiny amd ggplot
+-   Advanced visualizations in Shiny and ggplot
 
--   Jira, Github, Confluence;
+-   Jira, Github, Confluence
 
 
 
