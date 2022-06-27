@@ -48,7 +48,6 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 ### Contact {#contact}
 
 -   <i class="fa fa-envelope"></i> [jtgregoire93\@gmail.com](mailto:jtgregoire93@gmail.com){.email}
--   <i class="fa fa-github"></i> github.com/jtgregoire93
 -   <i class="fa fa-linkedin"></i> [Linkedin](https://www.linkedin.com/in/justin-gregoire/)
 -   <i class="fa fa-phone"></i> (757) 619-7431
 
