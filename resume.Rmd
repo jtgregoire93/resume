@@ -19,7 +19,7 @@ library(glue)
 library(googlesheets4)
 
 # Set this to true to have links turned into footnotes at the end of the document
-PDF_EXPORT <- TRUE
+PDF_EXPORT <- FALSE
 
 # Holds all the links that were inserted for placement at the end
 links <- c()
@@ -70,9 +70,9 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 
 -   Domain knowledge of product and marketing across B2C (ed tech, mobile gaming) and B2B (Cloud Services);
 
--   Data team strategy and processes;
+-   Data team strategy and processes
 
--   Extensive executive presentation experience
+-   Presentation experience with both technical and non-technical audiences
 
 ### **Toolset**
 
