@@ -7,10 +7,6 @@ I've employed my skillset across multiple cross-functional teams within a variet
 "
 
 
-# Language skills for skill bars visualization
-skills <- tribble(
-  ~skill,               ~level,
-  "R",                  5,
-  "SQL",                5,
-  "Python",             3
-)
+
+
+
