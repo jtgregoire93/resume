@@ -111,8 +111,3 @@ cat(sanitize_links(intro_text))
 position_data %>% print_section('positions')
 ```
 
-## Miscellaneous {#misc}
-
-```{r}
-position_data %>% print_section('miscellaneous')
-```
