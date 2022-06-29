@@ -26,8 +26,6 @@ library(tidyverse)
 library(glue)
 library(googlesheets4)
 
-
-
 # Set this to true to have links turned into footnotes at the end of the document
 PDF_EXPORT <- params$pdf_export
 # ss id of your google sheet, using mine here
@@ -53,51 +51,51 @@ intro_text <- read_sheet(params$sheet_ss_id, sheet = "text_blocks", skip = 1) %>
   select("text") %>% 
   as.character()
 
+skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1) 
+
 ```
 
 # Aside
 
-![logo](headshot.png){width="90%"}
+![headshot](https://raw.githubusercontent.com/jtgregoire93/resume/main/headshot.png){width="90%"}
 
 ### Contact {#contact}
 
+-   [<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/justin-gregoire/) \| [<i class="fa fa-github"> </i>](https://github.com/jtgregoire93) \| <i class="fa fa-map-marker"></i> New York, NY
+
 -   <i class="fa fa-envelope"></i> [jtgregoire93\@gmail.com](mailto:jtgregoire93@gmail.com){.email}
--   <i class="fa fa-linkedin"></i> [Linkedin](https://www.linkedin.com/in/justin-gregoire/)
--   <i class="fa fa-phone"></i> (757) 619-7431
+
+-   <i class="fa fa-phone"> </i> +1 757-619-7431
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
--   `r position_data %>% filter(section == 'education') %>% select("loc")`
+-   **`r position_data %>% filter(section == 'education') %>% select("loc")`**
 -   `r position_data %>% filter(section == 'education') %>% select("title")`
 -   `r paste0(position_data %>% filter(section == 'education') %>% select("start"), '-', position_data %>% filter(section == 'education') %>% select("end"))`
 
 ### **Technical Skills**
 
--   Inferential Statistics and Modeling
+-   `r skills %>% filter(loc == 'technical') %>% select("skill1")`
 
--   Data Modeling and Warehouse design
+-   `r skills %>% filter(loc == 'technical') %>% select("skill2")`
 
--   Advanced Data Visualizations
+-   `r skills %>% filter(loc == 'technical') %>% select("skill3")`
 
 ### **Strategic Skills**
 
--   Domain knowledge of product and marketing across B2C (ed tech, mobile gaming) and B2B (Cloud Services)
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill1")`
 
--   Data team strategy and processes
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill2")`
 
--   Presentation experience with both technical and non-technical audiences
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill3")`
 
 ### **Toolset**
 
--   R, SQL, Python;
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill1")`
 
--   Dashboards in Tableau, Looker, Domo, Mixpanel
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill2")`
 
--   Advanced visualizations in Shiny and ggplot
-
--   Jira, Github, Confluence
-
-
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill3")`
 
 #### Access Links {#files}
 
@@ -109,7 +107,6 @@ if(PDF_EXPORT){
   cat("[<i class='fas fa-download'></i> Download PDF version](", params$pdf_location, ")")
 }
 ```
-
 
 # Main
 
@@ -124,4 +121,3 @@ cat(sanitize_links(intro_text))
 ```{r}
 position_data %>% print_section('positions')
 ```
-
