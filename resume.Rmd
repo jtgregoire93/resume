@@ -1,12 +1,20 @@
 ---
 title: Justin Gregoire's CV
 date: "`r Sys.Date()`"
+params: 
+  pdf_export: 
+    value: TRUE
+  sheet_ss_id: 
+    value: "1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM"
+  online_link:
+    value: "https://jtgregoire93.github.io/resume/"
+  pdf_location: 
+    value: "https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf"
 output:
   pagedown::html_resume:
     css: ['css/custom_resume.css', 'css/styles.css', 'resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
-
 ---
 
 ```{r, include=FALSE}
@@ -18,18 +26,20 @@ library(tidyverse)
 library(glue)
 library(googlesheets4)
 
+
+
 # Set this to true to have links turned into footnotes at the end of the document
-PDF_EXPORT <- FALSE
+PDF_EXPORT <- params$pdf_export
+# ss id of your google sheet, using mine here
 
 # Holds all the links that were inserted for placement at the end
-links <- c()
 
 source('parsing_functions.R') # Functions for building sections from CSV data
 source('common_variables.R')  # Small variables for non-csv data such as intro text
 
 # First let's get the data, filtering to only the items tagged as
 # Resume items
-position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', sheet = "entries", skip = 1) %>% 
+position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
   #filter(in_resume) %>% 
   mutate(
     # Build some custom sections by collapsing others
@@ -38,6 +48,10 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
       TRUE ~ section
     )
   ) 
+
+intro_text <- read_sheet(params$sheet_ss_id, sheet = "text_blocks", skip = 1) %>%
+  select("text") %>% 
+  as.character()
 
 ```
 
@@ -90,9 +104,9 @@ position_data <- read_sheet('1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM', shee
 ```{r}
 # When in export mode the little dots are unaligned, so fix that. 
 if(PDF_EXPORT){
-  cat("Online version [here](https://jtgregoire93.github.io/resume/)")
+  cat("Online version [here](", params$online_link, ")")
 } else {
-  cat("[<i class='fas fa-download'></i> Download PDF version](https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf)")
+  cat("[<i class='fas fa-download'></i> Download PDF version](", params$pdf_location, ")")
 }
 ```
 
