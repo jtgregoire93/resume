@@ -71,7 +71,7 @@ skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1)
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
--   **`r position_data %>% filter(section == 'education') %>% select("loc")`**
+-   **`r position_data %>% filter(section == 'education') %>% select("institution")`**
 -   `r position_data %>% filter(section == 'education') %>% select("title")`
 -   `r paste0(position_data %>% filter(section == 'education') %>% select("start"), '-', position_data %>% filter(section == 'education') %>% select("end"))`
 
