@@ -38,7 +38,7 @@ source('common_variables.R')  # Small variables for non-csv data such as intro t
 # First let's get the data, filtering to only the items tagged as
 # Resume items
 position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
-  #filter(in_resume) %>% 
+  filter(in_resume) %>% 
   mutate(
     # Build some custom sections by collapsing others
     section = case_when(
