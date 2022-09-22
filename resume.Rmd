@@ -60,14 +60,10 @@ skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1)
 ![headshot](https://raw.githubusercontent.com/jtgregoire93/resume/main/headshot.png){width="90%"}
 
 ### Contact {#contact}
-
--   [<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/justin-gregoire/){target="_blank"} \| [<i class="fa fa-github"> </i>](https://github.com/jtgregoire93){target="_blank"} \| [<i class="fa fa-calendar"></i>](https://calendly.com/jtgregoire){target="_blank"} Availability
-
 -   <i class="fa fa-map-marker"></i> San Francisco, CA
-
 -   <i class="fa fa-envelope"></i> [jtgregoire93\@gmail.com](mailto:jtgregoire93@gmail.com){.email}
-
 -   <i class="fa fa-phone"> </i> +1 757-619-7431
+-   Socials: [<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/justin-gregoire/){target="_blank"} | [<i class="fa fa-github"></i>](https://github.com/jtgregoire93){target="_blank"}
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
