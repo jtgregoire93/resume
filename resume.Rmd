@@ -7,9 +7,9 @@ params:
   sheet_ss_id: 
     value: "1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM"
   online_link:
-    value: "https://jtgregoire93.github.io/resume/"
+    value: "https://jtgregoire93.github.io/resume"
   pdf_location: 
-    value: "https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf"
+    value: "https://github.com/jtgregoire93/resume/raw/main/resume.pdf"
 output:
   pagedown::html_resume:
     css: ['css/custom_resume.css', 'css/styles.css', 'resume']
@@ -25,6 +25,7 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(glue)
 library(googlesheets4)
+library(crayon)
 
 # Set this to true to have links turned into footnotes at the end of the document
 PDF_EXPORT <- params$pdf_export
@@ -53,6 +54,18 @@ intro_text <- read_sheet(params$sheet_ss_id, sheet = "text_blocks", skip = 1) %>
 
 skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1) 
 
+contact_info <-
+  read_sheet(params$sheet_ss_id, sheet = "contact_info", skip = 1)
+location <-
+  contact_info %>% filter(loc == 'location')  %>% select(entry) %>%  as.character()
+email <-
+  contact_info %>% filter(loc == 'email')  %>% select(entry) %>% as.character()
+phone <-
+  contact_info %>% filter(loc == 'phone')  %>% select(entry) %>% as.character()
+linkedin <-
+  contact_info %>% filter(loc == 'linkedin')  %>% select(entry) %>% as.character()
+github <-
+  contact_info %>% filter(loc == 'github')  %>% select(entry) %>% as.character()
 ```
 
 # Aside
@@ -60,10 +73,11 @@ skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1)
 ![headshot](https://raw.githubusercontent.com/jtgregoire93/resume/main/headshot.png){width="90%"}
 
 ### Contact {#contact}
--   <i class="fa fa-map-marker"></i> San Francisco, CA
--   <i class="fa fa-envelope"></i> [jtgregoire93\@gmail.com](mailto:jtgregoire93@gmail.com){.email}
--   <i class="fa fa-phone"> </i> +1 757-619-7431
--   Socials: [<i class="fa fa-linkedin"></i>](https://www.linkedin.com/in/justin-gregoire/){target="_blank"} | [<i class="fa fa-github"></i>](https://github.com/jtgregoire93){target="_blank"}
+
+-   <i class="fa fa-map-marker"></i> `r location`
+-   <i class="fa fa-envelope"></i> [`r email`](`r hyperlink(paste0("mailto:",email))`){.email} 
+-   <i class="fa fa-phone"> </i> `r phone`
+-   [Linkedin: <i class="fa fa-linkedin"></i>](`r hyperlink(linkedin)`){target="_blank"} \  |  [Github: <i class='fa fa-github'></i>](`r hyperlink(github)`){target="_blank"}
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
@@ -111,7 +125,7 @@ if(PDF_EXPORT){
 ## Justin Gregoire {#title}
 
 ```{r message=FALSE, warning=FALSE}
-cat(sanitize_links(intro_text))
+cat(paste0(intro_text, sep = "\n"))
 ```
 
 ## Professional Experience {data-icon="suitcase"}
