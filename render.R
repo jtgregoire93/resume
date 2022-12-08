@@ -1,7 +1,10 @@
 # This script builds both the HTML and PDF versions of your CV
-
+library(fs)
+library(rmarkdown)
+library(pagedown)
+library(pdftools)
 # declare param inputs to render
-sheet_ss_id <-  "1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM"
+sheet_ss_id <-  "1SqkIDpyVfurLA0DXRgcsZ9aba_Bk9bvak0sGRCLsVX0"
 online_link <- "https://jtgregoire93.github.io/resume/"
 pdf_location <- "https://github.com/jtgregoire93/resume/raw/main/resume.pdf"
 # Knit the HTML version

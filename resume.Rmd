@@ -5,7 +5,7 @@ params:
   pdf_export: 
     value: TRUE
   sheet_ss_id: 
-    value: "1JLnOdTkLmNy7c08_61NGYS2AlOt5fgqfPGmnKRW0pdM"
+    value: "1SqkIDpyVfurLA0DXRgcsZ9aba_Bk9bvak0sGRCLsVX0"
   online_link:
     value: "https://jtgregoire93.github.io/resume"
   pdf_location: 
@@ -26,6 +26,7 @@ library(tidyverse)
 library(glue)
 library(googlesheets4)
 library(crayon)
+library(googledrive)
 
 # Set this to true to have links turned into footnotes at the end of the document
 PDF_EXPORT <- params$pdf_export
