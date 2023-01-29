@@ -2,6 +2,8 @@
 title: Justin Gregoire's CV
 date: "`r Sys.Date()`"
 params: 
+  your_name: 
+    value: "Justin Gregoire"
   pdf_export: 
     value: TRUE
   sheet_ss_id: 
@@ -27,9 +29,12 @@ library(glue)
 library(googlesheets4)
 library(crayon)
 library(googledrive)
+library(gluedown)
+library(fontawesome)
 
 # Set this to true to have links turned into footnotes at the end of the document
 PDF_EXPORT <- params$pdf_export
+your_name <- params$your_name
 # ss id of your google sheet, using mine here
 
 # Holds all the links that were inserted for placement at the end
@@ -58,27 +63,29 @@ skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1)
 contact_info <-
   read_sheet(params$sheet_ss_id, sheet = "contact_info", skip = 1)
 location <-
-  contact_info %>% filter(loc == 'location')  %>% select(entry) %>%  as.character()
+  contact_info %>% filter(loc == 'location')  %>% select(entry, link) 
 email <-
-  contact_info %>% filter(loc == 'email')  %>% select(entry) %>% as.character()
+  contact_info %>% filter(loc == 'email')  %>% select(entry, link)  
 phone <-
-  contact_info %>% filter(loc == 'phone')  %>% select(entry) %>% as.character()
+  contact_info %>% filter(loc == 'phone')  %>% select(entry, link)  
 linkedin <-
-  contact_info %>% filter(loc == 'linkedin')  %>% select(entry) %>% as.character()
+  contact_info %>% filter(loc == 'linkedin')  %>% select(entry, link)  
 github <-
-  contact_info %>% filter(loc == 'github')  %>% select(entry) %>% as.character()
+  contact_info %>% filter(loc == 'github')  %>% select(entry, link)  
+calendly <-
+  contact_info %>% filter(loc == 'calendly')  %>% select(entry, link) 
+
+
 ```
 
 # Aside
 
-![headshot](https://raw.githubusercontent.com/jtgregoire93/resume/main/headshot.png){width="90%"}
-
 ### Contact {#contact}
 
--   <i class="fa fa-map-marker"></i> `r location`
--   <i class="fa fa-envelope"></i> [`r email`](`r hyperlink(paste0("mailto:",email))`){.email} 
--   <i class="fa fa-phone"> </i> `r phone`
--   [Linkedin: <i class="fa fa-linkedin"></i>](`r hyperlink(linkedin)`){target="_blank"} \  |  [Github: <i class='fa fa-github'></i>](`r hyperlink(github)`){target="_blank"}
+-   [<i class="fa fa-map-marker"> </i>](`r location %>% select(link) %>% hyperlink()`) `r location %>% select(entry)`
+-   [<i class="fa fa-envelope"> </i>](`r email %>% select(link) %>% hyperlink()`) `r email %>% select(entry) %>% as.character()`
+-   [<i class="fa fa-phone"> </i>](`r phone %>% select(link) %>% hyperlink()`) `r phone %>% select(entry)`
+-   Socials:   [<i class="fa fa-github"> </i>](`r github %>% select(link) %>% hyperlink()`)   [<i class="fa fa-linkedin"> </i>](`r linkedin %>% select(link) %>% hyperlink()`)   [<i class="fa fa-calendar"> </i>](`r calendly %>% select(link) %>% hyperlink()`)
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
@@ -123,7 +130,7 @@ if(PDF_EXPORT){
 
 # Main
 
-## Justin Gregoire {#title}
+## `r your_name` {#title}
 
 ```{r message=FALSE, warning=FALSE}
 cat(paste0(intro_text, sep = "\n"))
