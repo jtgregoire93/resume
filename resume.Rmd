@@ -86,7 +86,7 @@ calendly <-
 -   [<i class="fa fa-map-marker"> </i>](%60r%20location%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "location"){target="_blank"} `r location %>% select(entry)`
 -   [<i class="fa fa-envelope"> </i>](%60r%20email%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Email"){target="_blank"} `r email %>% select(entry) %>% as.character()`
 -   [<i class="fa fa-phone"> </i>](%60r%20phone%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Phone (US)"){target="_blank"} `r phone %>% select(entry)`
--   Socials: [<i class="fa fa-github"> </i>](%60r%20github%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Github"){target="_blank"}  [<i class="fa fa-linkedin"> </i>](%60r%20linkedin%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Linkedin"){target="_blank"}  [<i class="fa fa-calendar"> </i>](%60r%20calendly%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60%20target=%22_blank%22 "Availability via Calendly"){target="_blank"}
+-   Socials: [<i class="fa fa-github"> </i>](%60r%20github%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Github"){target="_blank"} [<i class="fa fa-linkedin"> </i>](%60r%20linkedin%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60 "Linkedin"){target="_blank"} [<i class="fa fa-calendar"> </i>](%60r%20calendly%20%%3E%%20select(link)%20%%3E%%20hyperlink()%60%20target=%22_blank%22 "Availability via Calendly"){target="_blank"}
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
