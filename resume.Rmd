@@ -83,10 +83,10 @@ calendly <-
 
 ### Contact {#contact}
 
--   [![](map-pin.svg){style="color:red" width="8%"}](https://goo.gl/maps/Kq3da8KnpZdFY6nd7) `r location %>% select(entry)`
--   [![](envelope.svg){width="8%"}](mailto:jtgregoire93@gmail.com) `r email %>% select(entry) %>% as.character()`
--   [![](phone.svg){width="8%"}](tel:+1757-619-7431) `r phone %>% select(entry)`
--   Socials: [![](linkedin.svg){width="8%"}](https://www.linkedin.com/in/justin-gregoire) [![](github.svg){width="8%"}](https://github.com/jtgregoire93). [![](calendar-days.svg){width="8%"}](https://calendly.com/jtgregoire93/30-minute-call)
+-   [![](map-pin.svg){style="color:red" width="8%"}](https://goo.gl/maps/Kq3da8KnpZdFY6nd7){target="_blank"} `r location %>% select(entry)`
+-   [![](envelope.svg){width="8%"}](mailto:jtgregoire93@gmail.com){target="_blank"} `r email %>% select(entry) %>% as.character()`
+-   [![](phone.svg){width="8%"}](tel:+1757-619-7431){target="_blank"} `r phone %>% select(entry)`
+-   [![](linkedin.svg){width="10%"}](https://www.linkedin.com/in/justin-gregoire){target="_blank"} [![](github.svg){width="10%"}](https://github.com/jtgregoire93){target="_blank"} [![](calendar-days.svg){width="10%"}](https://calendly.com/jtgregoire93/30-minute-call){target="_blank"}
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
