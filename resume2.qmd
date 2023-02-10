@@ -1,0 +1,147 @@
+---
+title: Justin Gregoire's CV
+format: html
+editor: visual
+date: "`r Sys.Date()`"
+params: 
+  your_name: 
+    value: "Justin Gregoire"
+  pdf_export: 
+    value: TRUE
+  sheet_ss_id: 
+    value: "1SqkIDpyVfurLA0DXRgcsZ9aba_Bk9bvak0sGRCLsVX0"
+  online_link:
+    value: "https://jtgregoire93.github.io/resume"
+  pdf_location: 
+    value: "https://github.com/jtgregoire93/resume/raw/main/resume.pdf"
+output:
+  pagedown::html_resume:
+    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  results='asis', 
+  echo = FALSE
+)
+library(tidyverse)
+library(glue)
+library(googlesheets4)
+library(crayon)
+library(googledrive)
+library(gluedown)
+library(fontawesome)
+library(tippy)
+
+# Set this to true to have links turned into footnotes at the end of the document
+PDF_EXPORT <- params$pdf_export
+your_name <- params$your_name
+# ss id of your google sheet, using mine here
+
+# Holds all the links that were inserted for placement at the end
+
+source('parsing_functions.R') # Functions for building sections from CSV data
+source('common_variables.R')  # Small variables for non-csv data such as intro text
+
+# First let's get the data, filtering to only the items tagged as
+# Resume items
+position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
+  filter(in_resume) %>% 
+  mutate(
+    # Build some custom sections by collapsing others
+    section = case_when(
+      section %in% c('industry_positions') ~ 'positions', 
+      TRUE ~ section
+    )
+  ) 
+
+intro_text <- read_sheet(params$sheet_ss_id, sheet = "text_blocks", skip = 1) %>%
+  select("text") %>% 
+  as.character()
+
+skills <- read_sheet(params$sheet_ss_id, sheet = "skills", skip = 1) 
+
+contact_info <-
+  read_sheet(params$sheet_ss_id, sheet = "contact_info", skip = 1)
+location <-
+  contact_info %>% filter(loc == 'location')  %>% select(entry, link) 
+email <-
+  contact_info %>% filter(loc == 'email')  %>% select(entry, link)  
+phone <-
+  contact_info %>% filter(loc == 'phone')  %>% select(entry, link)  
+linkedin <-
+  contact_info %>% filter(loc == 'linkedin')  %>% select(entry, link)  
+github <-
+  contact_info %>% filter(loc == 'github')  %>% select(entry, link)  
+calendly <-
+  contact_info %>% filter(loc == 'calendly')  %>% select(entry, link) 
+
+
+```
+
+# Aside
+
+### Contact {#contact}
+
+-   [![](map-pin.svg){style="color:red" width="8%"}](https://goo.gl/maps/Kq3da8KnpZdFY6nd7) `r location %>% select(entry)`
+-   [![](envelope.svg){width="8%"}](mailto:jtgregoire93@gmail.com) `r email %>% select(entry) %>% as.character()`
+-   [![](phone.svg){width="8%"}](tel:+1757-619-7431) `r phone %>% select(entry)`
+-   Socials: [![](linkedin.svg){width="8%"}](https://www.linkedin.com/in/justin-gregoire) [![](github.svg){width="8%"}](https://github.com/jtgregoire93). [![](calendar-days.svg){width="8%"}](https://calendly.com/jtgregoire93/30-minute-call)
+
+### Education {data-icon="graduation-cap" data-concise="true"}
+
+-   **`r position_data %>% filter(section == 'education') %>% select("institution")`**
+-   `r position_data %>% filter(section == 'education') %>% select("title")`
+-   `r paste0(position_data %>% filter(section == 'education') %>% select("start"), '-', position_data %>% filter(section == 'education') %>% select("end"))`
+
+### **Technical Skills**
+
+-   `r skills %>% filter(loc == 'technical') %>% select("skill1")`
+
+-   `r skills %>% filter(loc == 'technical') %>% select("skill2")`
+
+-   `r skills %>% filter(loc == 'technical') %>% select("skill3")`
+
+### **Strategic Skills**
+
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill1")`
+
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill2")`
+
+-   `r skills %>% filter(loc == 'strategic') %>% select("skill3")`
+
+### **Toolset**
+
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill1")`
+
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill2")`
+
+-   `r skills %>% filter(loc == 'toolset') %>% select("skill3")`
+
+#### Access {#files}
+
+```{r}
+# When in export mode the little dots are unaligned, so fix that. 
+if(PDF_EXPORT){
+  cat("[Online version](", params$online_link, ")")
+} else {
+  cat("[<i class='fas fa-download'></i> Download PDF version](", params$pdf_location, ")")
+}
+```
+
+# Main
+
+## `r your_name` {#title}
+
+```{r message=FALSE, warning=FALSE}
+cat(paste0(intro_text, sep = "\n"))
+```
+
+## Professional Experience {data-icon="suitcase"}
+
+```{r comment=NA, results='asis'}
+position_data %>% print_section('positions') 
+
+```
