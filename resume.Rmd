@@ -1,5 +1,5 @@
 ---
-title: Justin Gregoire's CV
+title: "Justin Gregoire's CV"
 date: "`r Sys.Date()`"
 params: 
   your_name: 
@@ -14,12 +14,12 @@ params:
     value: "https://github.com/jtgregoire93/resume/raw/main/resume.pdf"
 output:
   pagedown::html_resume:
-    css: ['css/custom_resume.css', 'css/styles.css', 'resume']
+    css: ['css/custom_resume.css','css/styles.css','resume']
     # set it to true for a self-contained HTML page but it'll take longer to render
     self_contained: true
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   results='asis', 
   echo = FALSE
@@ -43,12 +43,10 @@ your_name <- params$your_name
 source('parsing_functions.R') # Functions for building sections from CSV data
 source('common_variables.R')  # Small variables for non-csv data such as intro text
 
-# First let's get the data, filtering to only the items tagged as
-# Resume items
+# Refactored code
 position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
   filter(in_resume) %>% 
   mutate(
-    # Build some custom sections by collapsing others
     section = case_when(
       section %in% c('industry_positions') ~ 'positions', 
       TRUE ~ section
@@ -76,6 +74,12 @@ github <-
 calendly <-
   contact_info %>% filter(loc == 'calendly')  %>% select(entry, link) 
 
+location <- contact_info %>% 
+            filter(loc == 'location')  %>% 
+            select(entry, link) 
+
+email <- contact_info %>% 
+         filter(loc == 'email')
 
 ```
 
@@ -141,5 +145,4 @@ cat(paste0(intro_text, sep = "\n"))
 
 ```{r comment=NA, results='asis'}
 position_data %>% print_section('positions') 
-
 ```
