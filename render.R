@@ -7,7 +7,7 @@ library(pdftools)
 # declare param inputs to render
 sheet_ss_id <- "1SqkIDpyVfurLA0DXRgcsZ9aba_Bk9bvak0sGRCLsVX0"
 online_link <- "https://jtgregoire93.github.io/resume/"
-pdf_location <- "https://github.com/jtgregoire93/resume/raw/main/resume.pdf"
+pdf_location <- "https://github.com/jtgregoire93/resume/raw/main/jgregoire_resume.pdf"
 # Knit the HTML version
 rmarkdown::render("resume.rmd", params = list(pdf_export = FALSE,
   sheet_ss_id = sheet_ss_id, online_link = online_link, pdf_location = pdf_location),
