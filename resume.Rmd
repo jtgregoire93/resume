@@ -41,7 +41,7 @@ your_name <- params$your_name
 # Holds all the links that were inserted for placement at the end
 
 source('parsing_functions.R') # Functions for building sections from CSV data
-source('common_variables.R')  # Small variables for non-csv data such as intro text
+
 
 # Refactored code
 position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
@@ -87,10 +87,10 @@ email <- contact_info %>%
 
 ### Contact {#contact}
 
--   [![](map-pin.svg){style="color:red" width="8%"}](https://goo.gl/maps/Kq3da8KnpZdFY6nd7) `r location %>% select(entry)`
--   [![](envelope.svg){width="8%"}](mailto:jtgregoire93@gmail.com) `r email %>% select(entry) %>% as.character()`
--   [![](phone.svg){width="8%"}](tel:+1757-619-7431) `r phone %>% select(entry)`
--   Socials: [![](linkedin.svg){width="8%"}](https://www.linkedin.com/in/justin-gregoire) [![](github.svg){width="8%"}](https://github.com/jtgregoire93). [![](calendar-days.svg){width="8%"}](https://calendly.com/jtgregoire93/30-minute-call)
+-   [![](svg/map-pin.svg){style="color:red" width="8%"}](https://goo.gl/maps/Kq3da8KnpZdFY6nd7) `r location %>% select(entry)`
+-   [![](svg/envelope.svg){width="8%"}](mailto:jtgregoire93@gmail.com) `r email %>% select(entry) %>% as.character()`
+-   [![](svg/phone.svg){width="8%"}](tel:+1757-619-7431) `r phone %>% select(entry)`
+-   Socials: [![](svg/linkedin.svg){width="8%"}](https://www.linkedin.com/in/justin-gregoire) [![](svg/github.svg){width="8%"}](https://github.com/jtgregoire93). [![](svg/calendar-days.svg){width="8%"}](https://calendly.com/jtgregoire93/30-minute-call)
 
 ### Education {data-icon="graduation-cap" data-concise="true"}
 
