@@ -42,6 +42,7 @@ your_name <- params$your_name
 
 source('parsing_functions.R') # Functions for building sections from CSV data
 
+gs4_auth(email = "jtgregoire93@gmail.com")
 
 # Refactored code
 position_data <- read_sheet(params$sheet_ss_id, sheet = "entries", skip = 1) %>% 
